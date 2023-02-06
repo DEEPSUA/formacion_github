@@ -3,7 +3,7 @@
   <img src="assets/images/Isologo-DEEPSUA_SinFondo.png" alt="DEEPSUA" style="width: 350px;" />
 </p>
 
-# Formación en Github
+# Formación en Github (By Jordi Sellés Enríquez, Coord. del Grado en Ing. Informática y Sec. del GT de Infraestructuras)
 
 Repositorio de la formación de GitHub de Infraestructuras.
 
@@ -25,7 +25,7 @@ GitHub Projects es una herramienta de gestión de proyectos que nos permite orga
 
 Los proyectos de GitHub se pueden utilizar para organizar el trabajo de un equipo, pero también se pueden utilizar para organizar el trabajo personal.
 
-Las tareas se pueden crear como _Issues_ vinculadas a un proyect, con su correspondiente _milestone_ y _label_. Las _issues_ pueden seguir plantillas y tener _checklists_, y se pueden asignar a personas o grupos de personas pertenecientes a la organización.
+Las tareas se pueden crear como _Issues_ vinculadas a un proyecto, con su correspondiente _milestone_ y _label_. Las _issues_ pueden seguir plantillas y tener _checklists_, y se pueden asignar a personas o grupos de personas pertenecientes a la organización.
 
 Hay un tipo de _Issues_ conocidas como _Pull Requests_ que se utilizan para solicitar cambios en un proyecto, como para solicitar que se incorporen cambios en el código desde la rama de desarrollo a la rama principal. Pueden ser revisadas por otros miembros del equipo y aceptadas o rechazadas, además de poder realizar tests automatizados mediante _GitHub Actions_ para comprobar que el código sigue funcionando correctamente.
 
