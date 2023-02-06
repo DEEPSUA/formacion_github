@@ -45,18 +45,18 @@ on:
     branches: [ main ]
 
 jobs:
-    build:
+  build:
     
-        runs-on: ubuntu-latest
+  runs-on: ubuntu-latest
     
-        steps:
-        - uses: actions/checkout@v2
-        - name: Run a one-line script
-        run: echo Hello, world!
-        - name: Run a multi-line script
-        run: |
-            echo Add other actions to build,
-            echo test, and deploy your project.
+  steps:
+    - uses: actions/checkout@v2
+    - name: Run a one-line script
+  run: echo Hello, world!
+    - name: Run a multi-line script
+  run: |
+    echo Add other actions to build,
+    echo test, and deploy your project.
 ```
 
 Las _actions_ se guardan en el directorio `.github/workflows` del repositorio. En este repositorio tenemos varias _actions_ distintas, que vamos a ver a continuación.
@@ -75,46 +75,46 @@ Una vez habilitada la opción de GitHub Pages, tendremos que crear un fichero de
 name: Publish to GitHub Pages
 
 on:
-    # Esta acción se ejecuta cuando se hace un push a la rama main
-    push:
-        branches: ["main"]
+  # Esta acción se ejecuta cuando se hace un push a la rama main
+  push:
+    branches: ["main"]
   
 permissions:
-    # Esta acción necesita permisos para escribir en el repositorio
-    contents: read
-    pages: write
-    id-token: write
+  # Esta acción necesita permisos para escribir en el repositorio
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
-    # Tarea para hacer un build de la página web
-    create-docs:
-        environment: Deploy docs
-        runs-on: ubuntu-latest
-        steps:
-          # Empezamos clonando el repositorio en la máquina virtual que se encargará de todo
-          # y luego instalamos las dependencias necesarias para hacer el build.
-          - name: Checkout
-            uses: actions/checkout@v2
-          - name: Set up Python
-            uses: actions/setup-python@v2
-            with:
-              python-version: 3.9
-          - name: Install dependencies
-            run: |
-              python -m pip install --upgrade pip
-              pip install -r mkdocs-requirements.txt
-          # Una vez instaladas las dependencias, hacemos el build de la página web y la subimos
-          - name: Build docs
-            run: mkdocs build
-          - name: Setup Pages
-            uses: actions/configure-pages@v2
-          - name: Upload artifact
-            uses: actions/upload-pages-artifact@v1
-            with:
-              path: './site'
-          - name: Deploy to GitHub Pages
-            id: deployment
-            uses: actions/deploy-pages@v1
+  # Tarea para hacer un build de la página web
+  create-docs:
+    environment: Deploy docs
+    runs-on: ubuntu-latest
+    steps:
+      # Empezamos clonando el repositorio en la máquina virtual que se encargará de todo
+      # y luego instalamos las dependencias necesarias para hacer el build.
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r mkdocs-requirements.txt
+      # Una vez instaladas las dependencias, hacemos el build de la página web y la subimos
+      - name: Build docs
+        run: mkdocs build
+      - name: Setup Pages
+        uses: actions/configure-pages@v2
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: './site'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
 ```
 
 Cabe destacar que este fichero de configuración publicará una web que tengamos escrita con ficheros _Markdown_ en el directorio `docs`. Si queremos publicar una web escrita con otro lenguaje, tendremos que modificar el fichero de configuración. A parte, vamos a utilizar una herramienta llamada _mkdocs_ para generar la web a partir de los ficheros _Markdown_, además de utilizar un tema llamado _Material for MkDocs_.
