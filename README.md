@@ -175,3 +175,11 @@ mkdocstrings
 mkdocstrings-python
 ```
 
+Simplemente, cuando llegue un _push_ a la rama _main_, se ejecutará la _action_ que hemos creado y se publicará la web en GitHub Pages.
+
+## Code Testing
+
+En este apartado vamos a ver cómo podemos utilizar GitHub Actions para ejecutar tests en nuestro repositorio. Para ello, vamos a utilizar la herramienta _unittest_.
+
+En la raiz del repositorio tenemos una carpeta llamada `src` que contiene la clase `Triangulo`. Esta clase tiene un método llamado `tipoTriangulo` que nos dice el tipo de triángulo que es, en función de la longitud de los lados que le enviemos por parámetros. Por otra parte, tenemos una carpeta llamada `tests` que contiene los tests que vamos a ejecutar para comprobar que el método `tipoTriangulo` funciona correctamente.
+
