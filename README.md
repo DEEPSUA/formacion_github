@@ -183,3 +183,51 @@ En este apartado vamos a ver cómo podemos utilizar GitHub Actions para ejecutar
 
 En la raiz del repositorio tenemos una carpeta llamada `src` que contiene la clase `Triangulo`. Esta clase tiene un método llamado `tipoTriangulo` que nos dice el tipo de triángulo que es, en función de la longitud de los lados que le enviemos por parámetros. Por otra parte, tenemos una carpeta llamada `tests` que contiene los tests que vamos a ejecutar para comprobar que el método `tipoTriangulo` funciona correctamente.
 
+Si nos situamos en la raiz del repositorio, podemos ejecutar los tests con el siguiente comando:
+
+```bash
+python -m unittest discover -s tests -p "test*.py"
+```
+
+Este comando nos va a ejecutar todos los tests que estén en el directorio `tests` y que empiecen por `test`. Si queremos ejecutar un test en concreto, podemos ejecutar el siguiente comando:
+
+```bash
+python -m unittest tests/test_Triangulo.py
+```
+
+Para poder ejecutar los tests con GitHub Actions, tendremos que crear un fichero de configuración en el directorio `.github/workflows` del repositorio. Este fichero de configuración se va a llamar `tests.yml` y va a tener el siguiente contenido:
+
+```yaml
+name: Tests
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Run tests
+        run: python -m unittest discover -s tests -p "test*.py"
+```
+
+Este fichero de configuración va a ejecutar los tests cada vez que se haga un _push_ a la rama _main_ o cuando se haga un _pull request_ a la rama _main_. Además, va a ejecutar los tests en una máquina virtual con Ubuntu.
+
+Cabe destacar que será necesario tener un fichero llamado `requirements.txt` en la raiz del repositorio. Este fichero de configuración tendrá el siguiente contenido:
+
+```txt
+unittest
+```
+
