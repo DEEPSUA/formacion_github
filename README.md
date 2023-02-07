@@ -231,3 +231,98 @@ Cabe destacar que será necesario tener un fichero llamado `requirements.txt` en
 unittest
 ```
 
+## Estiquetado de versiones
+
+Cuando tumbamos código de la rama de desarrollo a la rama principal, es muy importante etiquetar la versión del código que estamos subiendo. Esto nos va a permitir tener un control de las versiones que vamos subiendo a la rama principal.
+
+Para realizar esto, utilizamos los _tags_ de Git. Para crear un _tag_ en Git, podemos ejecutar el siguiente comando:
+
+```bash
+git tag -a v1.0.0 -m "Versión 1.0.0"
+```
+
+Este comando va a crear un _tag_ llamado `v1.0.0` en el repositorio. Si queremos ver todos los _tags_ que tenemos en el repositorio, podemos ejecutar el siguiente comando:
+
+```bash
+git tag
+```
+
+Si queremos subir el _tag_ a GitHub, podemos ejecutar el siguiente comando:
+
+```bash
+git push origin v1.0.0
+```
+
+En este repositorio vamos a tener un fichero YAML llamado 'auto-prerelease.yml' en el directorio '.github/workflows'. Este fichero de configuración va a crear un _tag_ cada vez que se haga un _push_ a la rama _main_.
+
+Este tag siempre será una pre-release. Esto significa que no será una versión estable, sino que será una versión de desarrollo que tiene pendiente alguna mejora o corrección antes de ser etiquetada como una versión estable.
+
+El fichero de configuración tendrá el siguiente contenido:
+
+```yaml
+name: "pre-release"
+
+on:
+  push:
+    branches:
+      - "main"
+      - "develop"
+
+permissions:
+  id-token: "write"
+  contents: "write"
+  packages: "write"
+  pull-requests: "read"
+
+jobs:
+  pre-release:
+    name: "Pre Release"
+    runs-on: "ubuntu-latest"
+
+    steps:
+      - name: "Build & test"
+        run: |
+          echo "done!"
+
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest"
+          prerelease: true
+          title: "Development Build"
+```
+
+En el caso de que queramos etiquetar una versión estable, se subirá un _tag_ a la rama _main_ y se creará una nueva _release_ en GitHub. Para ello vamos a utilizar el fichero de configuración `auto-release.yml` que se encuentra en el directorio de los _workflows_. 
+
+Este fichero de configuración tendrá el siguiente contenido:
+
+```yaml
+name: "auto-release"
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  id-token: "write"
+  contents: "write"
+  packages: "write"
+  pull-requests: "read"
+
+jobs:
+  tagged-release:
+    name: "Tagged Release"
+    runs-on: "ubuntu-latest"
+
+    steps:
+      - name: "Build & test"
+        run: |
+          echo "done!"
+
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: false
+```
+
