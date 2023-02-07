@@ -3,7 +3,7 @@
 class Triangulo:
     """Esta clase representa un triángulo"""
     
-    def tipoTipo(self, lado1:int, lado2:int, lado3:int) -> str:
+    def tipoTriangulo(self, lado1:int, lado2:int, lado3:int) -> str:
         """
         Método que devuelve el tipo de triángulo.
 
