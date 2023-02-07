@@ -12,6 +12,6 @@ Repositorio de la formación en GitHub de la Delegación de Estudiantes de la Es
 - [Introducción](intro.md)
 - [GitHub Projects y GitHub Issues](projects.md)
 - [GitHub Actions](actions.md)
-- [GitHub Pages](pages.md)
+- [GitHub Pages](actions.md#github-pages)
 
 
