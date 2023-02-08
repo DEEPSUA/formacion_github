@@ -326,3 +326,84 @@ jobs:
           prerelease: false
 ```
 
+## Easter egg: Avisos por Telegram
+
+Mediante el uso de las GitHub Actions podemos enviar avisos por un chat de Telegram cada vez que se monte una nueva _release_. Para ello, vamos a utlizar el fichero de configuración `telegram.yml` que se encuentra en el directorio de los _workflows_.
+
+También se podría configurar para otros menesteres como avisar cuando se abre una nueva _issue_ o cuando se hace un _pull request_, entre otras cosas. 
+
+Este fichero de configuración tendrá el siguiente contenido:
+
+```yaml
+name: notify-on-telegram
+on:
+  workflow_run:
+    workflows: ["auto-release"]
+    types:
+      - completed
+  
+permissions:
+  id-token: "write"
+  contents: "write"
+  packages: "write"
+  pull-requests: "read"
+
+jobs:
+  send_message:
+    name: "Notify on Telegram"
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: "Send Telegram message"
+        uses: "appleboy/telegram-action@master"
+        with:
+          to: "${{ secrets.TELEGRAM_TO }}"
+          token: "${{ secrets.TELEGRAM_TOKEN }}"
+          format: "html"
+          dissable_web_page_preview: true
+          message: |
+            "¡Actualizaciones en <strong>${{ github.event.repository.name }}</strong>!
+            Se ha publicado una versión nueva: <code>${{ github.ref_name }}</code>.
+            Puedes ver los cambios en el <a href="https://github.com/${{ github.repository }}/releases/latest">changeLog</a>. 
+            Además, no te olvides de consultar la <a href="https://deepsua.github.io/formacion_github/">documentación</a>."
+```
+
+De este fichero de configuración cabe destacar el uso de dos variables de entorno que se encuentran en el apartado de _Settings_ de nuestro repositorio. Estas variables son:
+- TELEGRAM_TO: Es el identificador del chat de Telegram al que queremos enviar los mensajes.
+- TELEGRAM_TOKEN: Es el token de nuestro bot de Telegram.
+
+Estas variables se crean en el apartado de _Settings_ de nuestro repositorio. Para crearlas, vamos a _Settings_ > _Security_ > _Secrets and variables_ > _Actions_ y le damos click al botón _New repository secret_.
+
+Para obtener el token de nuestro bot de Telegram, vamos a _BotFather_ y le damos click al botón _New bot_. Le damos un nombre al bot y le damos click al botón _Create bot_. Una vez creado el bot, le damos click al botón _API Token_ y copiamos el token que aparece en la pantalla.
+
+Para obtener el identificador del chat de Telegram al que queremos enviar los mensajes, podemos utilizar el siguiente script con Python:
+
+```python
+# Instalar la librería python-telegram-bot: pip3 install python-telegram-bot
+# Guardar el script en un fichero llamado telegram.py
+from telegram.ext import Updater, CommandHandler, CallbackContext
+from telegram import Update
+
+updater = Updater(token='TOKEN', use_context=True) # TOKEN es el token de nuestro bot de Telegram
+dp = updater.dispatcher
+jq = updater.job_queue
+
+def currentChatInfo(update: Update, context: CallbackContext):
+    update.effective_message.reply_text(update.effective_chat.to_json())
+  
+dp.add_handler(CommandHandler('currentChatInfo', currentChatInfo))
+
+updater.start_polling()
+updater.idle()
+# Ejecutar el script: python3 telegram.py
+# Escribir al bot de Telegram: /currentChatInfo
+```
+
+Una vez ejecutado el script, escribimos al bot de Telegram el comando `/currentChatInfo` y nos devolverá un JSON con la información del chat. En este JSON, el campo `id` es el identificador del chat de Telegram al que queremos enviar los mensajes.
+
+Tenemos el script de Python en el directorio _src_ del repositorio.
+
+Ahora ya sabes como crear un bot de Telegram y tienes un modelo muy básico para hacer pruebas. ¡Te animo a que juegues con Python y Telegram para crear tus propios bots!
+
+Una vez añadimos las variables de entorno, ya podemos hacer etiquetar una nueva versión en el repositorio y ver como se envía un mensaje al chat de Telegram.
+
+
