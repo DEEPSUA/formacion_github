@@ -1,39 +1,8 @@
-<!-- Imagen centrada del logo -->
-<p align="center">
-  <img src="assets/images/Isologo-DEEPSUA_SinFondo.png" alt="DEEPSUA" style="width: 350px;" />
-</p>
+# GitHub Actions
 
-# Formación en Github (By Jordi Sellés Enríquez, Coord. del Grado en Ing. Informática y Sec. del GT de Infraestructuras)
+GitHub Actions es una herramienta que nos permite automatizar tareas. Se pueden crear _workflows_ que se ejecutan cuando se produce un evento, como un _push_ a una rama, un _pull request_ o un _issue_. Los _workflows_ se pueden crear en un fichero de texto plano, en YAML, que se almacena en el repositorio. Los podemos ejecutar en un entorno de ejecución, que puede ser un contenedor de Docker o una máquina virtual.
 
-Repositorio de la formación de GitHub de Infraestructuras.
-
-## ¿Qué es GitHub? ¿Qué vamos a aprender?
-
-GitHub es una plataforma de desarrollo colaborativo que se utiliza para alojar proyectos utilizando el sistema de control de versiones Git. Esencialmente, GitHub es una red social para desarrolladores.
-
-Actualmente, GitHub es la plataforma más importante de colaboración para desarrolladores de software.
-
-Generalmente, se aloja código, pero también se puede utilizar para alojar otros tipos de archivos, como documentos, imágenes, vídeos, etc. Además, GitHub permite la creación de wikis, que son páginas web que se pueden editar directamente desde el navegador o el uso de GitHub Pages, que permite alojar páginas web estáticas. Además, tenemos otras herramientas como GitHub Actions, que permite automatizar tareas, o GitHub Packages, que permite alojar paquetes de software.
-
-### ¿Qué vamos a aprender?
-
-En esta formación vamos a aprender a utilizar GitHub para alojar proyectos de software, pero también vamos a aprender a utilizar otras herramientas que nos ofrece GitHub, como GitHub Pages, GitHub Actions y los Proyectos de GitHub.
-
-## GitHub Projects y GitHub Issues
-
-GitHub Projects es una herramienta de gestión de proyectos que nos permite organizar nuestro trabajo en proyectos. Nos permite crear tableros de proyectos, que son listas de tareas, y asignar tareas a personas, etiquetas, fechas de vencimiento, etc.
-
-Los proyectos de GitHub se pueden utilizar para organizar el trabajo de un equipo, pero también se pueden utilizar para organizar el trabajo personal.
-
-Las tareas se pueden crear como _Issues_ vinculadas a un proyecto, con su correspondiente _milestone_ y _label_. Las _issues_ pueden seguir plantillas y tener _checklists_, y se pueden asignar a personas o grupos de personas pertenecientes a la organización.
-
-Hay un tipo de _Issues_ conocidas como _Pull Requests_ que se utilizan para solicitar cambios en un proyecto, como para solicitar que se incorporen cambios en el código desde la rama de desarrollo a la rama principal. Pueden ser revisadas por otros miembros del equipo y aceptadas o rechazadas, además de poder realizar tests automatizados mediante _GitHub Actions_ para comprobar que el código sigue funcionando correctamente.
-
-## GitHub Actions
-
-GitHub Actions es una herramienta que nos permite automatizar tareas. Se pueden crear _workflows_ que se ejecutan cuando se produce un evento, como un _push_ a una rama, un _pull request_ o un _issue_. Los _workflows_ se pueden crear en un fichero de texto plano, en YAML, que se almacena en el repositorio. Los _workflows_ se pueden ejecutar en un entorno de ejecución, que puede ser un contenedor de Docker o una máquina virtual.
-
-### Ejemplo de un workflow
+## Ejemplo de un workflow
 
 ```yaml
 name: CI
@@ -45,21 +14,21 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
-    
-  runs-on: ubuntu-latest
-    
-  steps:
-    - uses: actions/checkout@v2
-    - name: Run a one-line script
-  run: echo Hello, world!
-    - name: Run a multi-line script
-  run: |
-    echo Add other actions to build,
-    echo test, and deploy your project.
+    build:
+        
+    runs-on: ubuntu-latest
+        
+    steps:
+        - uses: actions/checkout@v2
+        - name: Run a one-line script
+    run: echo Hello, world!
+        - name: Run a multi-line script
+    run: |
+        echo Add other actions to build,
+        echo test, and deploy your project.
 ```
 
-Las _actions_ se guardan en el directorio `.github/workflows` del repositorio. En este repositorio tenemos varias _actions_ distintas, que vamos a ver a continuación.
+En este repositorio vamos a tener varias _actions_ distintas, que vamos a ver a continuación.
 
 ## GitHub Pages
 
@@ -67,7 +36,7 @@ GitHub Pages es una herramienta que nos permite alojar páginas web estáticas e
 
 Para poder utilizar GitHub Pages en nuestro repositorio mediante el uso de una _action_, tendremos que habilitar la opción de GitHub Pages en el apartado de _Settings_ del repositorio. Look:
 
-![GitHub Pages Settings](assets/images/github-pages-settings.png)
+![GitHub Pages Settings](images/github-pages-settings.png)
 
 Una vez habilitada la opción de GitHub Pages, tendremos que crear un fichero de configuración en el directorio `.github/workflows` del repositorio. Este fichero de configuración se va a llamar `pages.yml` y va a tener el siguiente contenido:
 
@@ -405,5 +374,3 @@ Tenemos el script de Python en el directorio _src_ del repositorio.
 Ahora ya sabes como crear un bot de Telegram y tienes un modelo muy básico para hacer pruebas. ¡Te animo a que juegues con Python y Telegram para crear tus propios bots!
 
 Una vez añadimos las variables de entorno, ya podemos hacer etiquetar una nueva versión en el repositorio y ver como se envía un mensaje al chat de Telegram.
-
-

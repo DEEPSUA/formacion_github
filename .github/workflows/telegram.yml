@@ -1,0 +1,30 @@
+name: notify-on-telegram
+on:
+  workflow_run:
+    workflows: ["auto-release"]
+    types:
+      - completed
+  
+permissions:
+  id-token: "write"
+  contents: "write"
+  packages: "write"
+  pull-requests: "read"
+
+jobs:
+  send_message:
+    name: "Notify on Telegram"
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: "Send Telegram message"
+        uses: "appleboy/telegram-action@master"
+        with:
+          to: "${{ secrets.TELEGRAM_TO }}"
+          token: "${{ secrets.TELEGRAM_TOKEN }}"
+          format: "html"
+          dissable_web_page_preview: true
+          message: |
+            "¡Actualizaciones en <strong>${{ github.event.repository.name }}</strong>!
+            Se ha publicado una versión nueva: <code>${{ github.ref_name }}</code>.
+            Puedes ver los cambios en el <a href="https://github.com/${{ github.repository }}/releases/latest">changeLog</a>. 
+            Además, no te olvides de consultar la <a href="https://deepsua.github.io/formacion_github/">documentación</a>."
