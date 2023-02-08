@@ -7,6 +7,8 @@
 
 Repositorio de la formación de GitHub de Infraestructuras.
 
+Documentación en formato web en [este enlace](https://deepsua.github.io/formacion-github/).
+
 ## ¿Qué es GitHub? ¿Qué vamos a aprender?
 
 GitHub es una plataforma de desarrollo colaborativo que se utiliza para alojar proyectos utilizando el sistema de control de versiones Git. Esencialmente, GitHub es una red social para desarrolladores.
@@ -176,6 +178,8 @@ mkdocstrings-python
 ```
 
 Simplemente, cuando llegue un _push_ a la rama _main_, se ejecutará la _action_ que hemos creado y se publicará la web en GitHub Pages.
+
+Podemos encontrar la web publicada en [este enlace](https://deepsua.github.io/formacion_github/).
 
 ## Code Testing
 
