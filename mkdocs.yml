@@ -37,6 +37,9 @@ markdown_extensions:
 
 nav:
   - Home: home.md
+  - Introducción: intro.md
+  - Projects: projects.md
+  - Actions: actions.md
 
 extra: 
   generator: false
