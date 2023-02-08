@@ -177,6 +177,8 @@ mkdocstrings-python
 
 Simplemente, cuando llegue un _push_ a la rama _main_, se ejecutará la _action_ que hemos creado y se publicará la web en GitHub Pages.
 
+Podemos encontrar la web publicada en [este enlace](https://deepsua.github.io/formacion_github/).
+
 ## Code Testing
 
 En este apartado vamos a ver cómo podemos utilizar GitHub Actions para ejecutar tests en nuestro repositorio. Para ello, vamos a utilizar la herramienta _unittest_.
