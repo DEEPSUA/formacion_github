@@ -129,7 +129,10 @@ markdown_extensions:
   - tables
 
 nav:
-  - Home: home.md
+  - Home: index.md
+  - Introducción: intro.md
+  - Projects: projects.md
+  - Actions: actions.md
 
 extra: 
   generator: false
