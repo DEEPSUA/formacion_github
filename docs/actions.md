@@ -105,6 +105,8 @@ theme:
     text: Exo 2
     code: Hack
   language: es
+  favicon: images/Isotipo-DEEPSUA_SinFondo.png
+  logo: images/Isologo-DEEPSUA_SinFondo.png
 
 plugins: 
   - mkdocstrings:
