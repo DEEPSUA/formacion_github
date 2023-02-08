@@ -7,6 +7,8 @@
 
 Repositorio de la formación de GitHub de Infraestructuras.
 
+Documentación en formato web en [este enlace](https://deepsua.github.io/formacion-github/).
+
 ## ¿Qué es GitHub? ¿Qué vamos a aprender?
 
 GitHub es una plataforma de desarrollo colaborativo que se utiliza para alojar proyectos utilizando el sistema de control de versiones Git. Esencialmente, GitHub es una red social para desarrolladores.
