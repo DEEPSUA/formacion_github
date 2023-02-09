@@ -7,7 +7,7 @@
 
 Repositorio de la formación de GitHub de Infraestructuras.
 
-Documentación en formato web en [este enlace](https://deepsua.github.io/formacion-github/).
+Documentación en formato web en [este enlace](https://deepsua.github.io/formacion_github/).
 
 ## ¿Qué es GitHub? ¿Qué vamos a aprender?
 
