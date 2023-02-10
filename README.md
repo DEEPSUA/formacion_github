@@ -138,6 +138,8 @@ theme:
     text: Exo 2
     code: Hack
   language: es
+  favicon: images/Isotipo-DEEPSUA_SinFondo.png
+  logo: images/Isologo-DEEPSUA_SinFondo.png
 
 plugins: 
   - mkdocstrings:
@@ -162,7 +164,10 @@ markdown_extensions:
   - tables
 
 nav:
-  - Home: home.md
+  - Home: index.md
+  - Introducción: intro.md
+  - Projects: projects.md
+  - Actions: actions.md
 
 extra: 
   generator: false
