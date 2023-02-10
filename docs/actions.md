@@ -199,12 +199,6 @@ jobs:
 
 Este fichero de configuración va a ejecutar los tests cada vez que se haga un _push_ a la rama _main_ o cuando se haga un _pull request_ a la rama _main_. Además, va a ejecutar los tests en una máquina virtual con Ubuntu.
 
-Cabe destacar que será necesario tener un fichero llamado `requirements.txt` en la raiz del repositorio. Este fichero de configuración tendrá el siguiente contenido:
-
-```txt
-unittest
-```
-
 ## Estiquetado de versiones
 
 Cuando tumbamos código de la rama de desarrollo a la rama principal, es muy importante etiquetar la versión del código que estamos subiendo. Esto nos va a permitir tener un control de las versiones que vamos subiendo a la rama principal.
